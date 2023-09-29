@@ -1,0 +1,15 @@
+/* Restriction sur la taille du logo dans la navbar*/
+.logo {
+    max-width: 150px;
+    max-height: 40px;
+}
+
+/* Couleur du fond de la navbar*/
+.bg-green {
+    background-color: #218283;
+}
+
+/* mise en page à l'interieur de la nav bar afin de mettre tous à gauche le chaps recherhce*/
+.navbar .navbar-collapse form {
+    margin-left: auto;
+}
