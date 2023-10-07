@@ -38,7 +38,7 @@ CREATE TABLE Patient(
 );
 
 CREATE TABLE Pathologie(
-        idPathologie INT,
+        idPathologie INT AUTO_INCREMENT,
         nomPathologie VARCHAR(255) NOT NULL,
         PRIMARY KEY(idPathologie)
 );
@@ -87,13 +87,11 @@ LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/Da
 LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
 
 
-SELECT * FROM VoieAdministration;
 SELECT * FROM StatutAdministration;
 SELECT * FROM Medicament;
 SELECT * FROM Prescription;
 
 
 
-SELECT idPathologie,nomPathologie FROM Pathologie
 
 

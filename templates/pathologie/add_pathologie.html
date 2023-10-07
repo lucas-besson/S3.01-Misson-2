@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter une pathologie</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Ajout une pathologie</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/pathologie/add">
+    <fieldset>
+        <div class="form-group container-md">
+            <label for="libelle_patho">Libellé Pathologie :</label><br>
+            <input class="form-control" id="nomPathologie" type="text" name="nomPathologie" placeholder=" EX : TUBERCULOSE " required><br>
+            <div style="text-align: center">
+                <a href="show" class="btn btn-danger">Annuler</a>
+                <input class="btn btn-primary" type="submit" value="Creer" name="Valider">
+            </div>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}

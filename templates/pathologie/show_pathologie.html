@@ -22,8 +22,8 @@
                   <td>{{ ligne.idPathologie }}</td>
                   <td>{{ ligne.nomPathologie }}</td>
                   <td>
-                      <a class="btn btn-success" href="/pathologie/edit?id={{ ligne.idPathologie }}&amp;param2={{ligne.nomPathologie}}">Editer</a>&nbsp;
-                      <a class="btn btn-danger" href="/pathologie/delete?id={{ ligne.idPathologie }}" >Supprimer</a>
+                      <a class="btn btn-success" href="/pathologie/edit?idPathologie={{ ligne.idPathologie }}&amp;param2={{ligne.nomPathologie}}">Editer</a>&nbsp;
+                      <a class="btn btn-danger" href="/pathologie/delete?idPathologie={{ ligne.idPathologie }}" >Supprimer</a>
                   </td>
            </tr>
         {% endfor %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Editer une pathologie</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Editer une pathologie</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/pathologie/edit" >
+    <fieldset>
+        <div class="form-group container-md">
+            <input type="hidden" name="idPathologie" size="18" value="{{ pathologie.idPathologie }}" id="idPathologie">
+            <label for="libelle">Libellé Pathologie:</label><br>
+            <input class="form-control" type="text" name="nomPathologie" value="{{ pathologie.nomPathologie }}" id="nomPathologie" required><br>
+            <input class="btn btn-primary" type="submit" value="Editer" name="Valider" >
+            <a href="show" class="btn btn-danger">Annuler</a>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}
