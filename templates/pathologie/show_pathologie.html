@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Show Pathologies</title>
+{% endblock %}
+
+{% block body %}
+<h3>Type of pathology</h3>
+<a class="btn btn-primary" href="/pathologie/add">Add Pathologies</a>
+<br><br>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Identifiant de la pathologie</th><th>Nom de la pathologie</th><th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if pathologie | length >= 1 %}
+        {% for ligne in pathologie %}
+           <tr>
+                  <td>{{ ligne.idPathologie }}</td>
+                  <td>{{ ligne.nomPathologie }}</td>
+                  <td>
+                      <a class="btn btn-success" href="/pathologie/edit?id={{ ligne.idPathologie }}&amp;param2={{ligne.nomPathologie}}">Editer</a>&nbsp;
+                      <a class="btn btn-danger" href="/pathologie/delete?id={{ ligne.idPathologie }}" >Supprimer</a>
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      Il y a aucune pathologie enregistrer. Vous pouvez dès à présent en ajouter une en cliquant sur le bouton "Add Pathologies".
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
