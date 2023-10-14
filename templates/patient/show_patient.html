@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Show Patients</title>
+{% endblock %}
+
+{% block body %}
+<h3>Type of patient</h3>
+<a class="btn btn-primary" href="/patient/add">Add Patient</a>
+<br><br>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Identifiant du patient</th><th>Nom du patient</th><th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if patient | length >= 1 %}
+        {% for ligne in patient %}
+           <tr>
+                  <td>{{ ligne.idPatient }}</td>
+                  <td>{{ ligne.nomPatient }}</td>
+                  <td>
+                      <a class="btn btn-success" href="/patient/edit?idPatient={{ ligne.idPatient }}&amp;param2={{ligne.idPatient}}">Editer</a>&nbsp;
+                      <a class="btn btn-danger" href="/patient/delete?idPatient={{ ligne.idPatient }}" >Supprimer</a>
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      Il y a aucun patient enregistré. Vous pouvez dès à présent en ajouter un en cliquant sur le bouton "Add Patient".
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

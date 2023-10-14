@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Editer un patient</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Editer un patient</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/patient/edit" >
+    <fieldset>
+        <div class="form-group container-md">
+            <input type="hidden" name="idPatient" size="18" value="{{ patient.idPatient }}" id="idPatient">
+            <label for="libelle">Libellé Patient:</label><br>
+            <input class="form-control" type="text" name="nomPatient" value="{{ patient.nomPatient }}" id="nomPatient" required><br>
+            <input class="btn btn-primary" type="submit" value="Editer" name="Valider" >
+            <a href="show" class="btn btn-danger">Annuler</a>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}
