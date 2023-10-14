@@ -26,7 +26,7 @@ CREATE TABLE Prescription(
 );
 
 CREATE TABLE Patient(
-        idPatient INT,
+        idPatient INT AUTO_INCREMENT,
         nom VARCHAR(255),
         prenom VARCHAR(255),
         dateNaissance DATE NOT NULL,
@@ -92,6 +92,30 @@ SELECT * FROM Medicament;
 SELECT * FROM Prescription;
 
 
+INSERT INTO Patient (nom, prenom, dateNaissance, adresse, codePostale, ville, telephone)
+VALUES ('lucas', 'besson', '2003-09-26', 'TEST ADRESSE', 75000, 'PARIS', 0677777777);
+
+INSERT INTO Patient (nom, prenom, dateNaissance, adresse, codePostale, ville, telephone)
+VALUES ('leo', 'corutois', '2003-09-16', 'TEST ADRESSE', 75000, 'PARIS', 0677777777);
+
+SELECT * FROM Patient;
+
+INSERT INTO est_malade_de(idPatient,idPathologie) VALUES (1,1);
+INSERT INTO est_malade_de(idPatient,idPathologie) VALUES (2,2);
+
+SELECT * FROM est_malade_de;
+
+SELECT nom,nomPathologie
+FROM Patient
+INNER JOIN est_malade_de emd on Patient.idPatient = emd.idPatient
+INNER JOIN Pathologie P on emd.idPathologie = P.idPathologie
+WHERE P.idPathologie=2;
+
+
+
+SELECT idPathologie,nomPathologie
+FROM Pathologie
+ORDER BY nomPathologie;
 
 
 

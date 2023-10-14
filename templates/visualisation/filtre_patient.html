@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block title %}
+  <title class="text-primary">Filtre des patients en fonction de leur pathologie</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <form method="post" action="/visualisation/filtre/send" style="display: inline-block">
+
+            <div class="form-group">
+                <h4>Rechercher par nom de pathologie</h4>
+                <input name="filter_word" type="text" placeholder="Recherche" size="10" class="form-control"
+                    value="{% if session['filter_word'] %}{{ session['filter_word'] }}{% endif %}">
+            </div>
+            {% if items_filtre is defined %}
+            <div class="form-group">
+                <h4>Types de pathologie</h4>
+                <select name="types" multiple>
+                    {% for item_filtre in types %}
+                        {% set id_item = item_filtre.idPathologie | string %}
+                        <option value="{{ item_filtre.idPathologie }}"
+                            {% if session['types'] %}
+                                {% if id_item in session['types'] %} selected {% endif %}
+                            {% endif %}
+                        >{{ item_filtre.nomPathologie }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary" style="display: inline-block;">Filtrer</button><br><br>
+        </form>
+        {% if session['filtrer_word'] or session['types']%}
+        <form action="/visualisation/filtre/suppr" style="display: inline-block; margin: 5px;" method="post">
+            <button class="btn btn-primary">Supprimer filtre</button><br><br>
+        </form>
+            <form action="#" style="display: inline-block; margin: 5px;" method="post">
+            <button class="btn btn-primary"> Exporter en CSV</button><br><br>
+        </form>
+        {% endif %}
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom Patient</th>
+                    <th>Nom de la pathologie</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if items_filtre | length >= 1 %}
+                    {% for ligne in items_filtre %}
+                    <tr>
+                        <td>{{ ligne.nom }}</td>
+                        <td>{{ ligne.nomPathologie }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>
+                            Il y a un problème et ce message d'erreur est à modifier
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
