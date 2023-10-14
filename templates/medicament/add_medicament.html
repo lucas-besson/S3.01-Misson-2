@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter un médicament</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Ajouter un médicament</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/medicament/add">
+    <fieldset>
+        <div class="form-group container-md">
+            <label for="labellecodeCIS">Code CIS :</label><br>
+            <input class="form-control" id="codeCIS" type="number" name="codeCIS" placeholder=" EX : 61234567 " required><br>
+            <label for="labelledenomination">Dénomination :</label><br>
+            <input class="form-control" id="denomination" type="text" name="denomination" placeholder=" EX : PARACETAMOL " required><br>
+            <label for="labelleformePharma">Forme Pharmaceutique :</label><br>
+            <input class="form-control" id="formePharama" type="text" name="formePharama" placeholder=" EX : COMPRIME " required><br>
+            <label for="labelleetatCommercialisation">Etat Commercialisation :</label><br>
+            <input class="form-control" id="etatCommercialisation" type="text" name="etatCommercialisation" placeholder=" EX : OUI/NON " required><br>
+            <label for="labellestatutBDM">Statut BDM :</label><br>
+            <input class="form-control" id="statutBDM" type="text" name="statutBDM" placeholder=" EX : AUTORISATION ACTIVE " required><br>
+            <label for="labellenumUEAutorisation">NumUE Autorisation :</label><br>
+            <input class="form-control" id="numUEAutorisation" type="text" name="numUEAutorisation" placeholder=" EX : 12345678 " required><br>
+            <label for="labelletitulaire">Titulaire :</label><br>
+            <input class="form-control" id="titulaire" type="text" name="titulaire" placeholder=" EX : LABORATOIRE " required><br>
+            <label for="labellesurveillanceRenforcee">Surveillance Renforcée :</label><br>
+            <input class="form-control" id="surveillance" type="text" name="surveillance" placeholder=" EX : OUI/NON " required><br>
+            <label for="labelleJJ_MM_AAAA">Date :</label><br>
+            <input class="form-control" id="JJ_MM_AAAA" type="date" name="JJ_MM_AAAA" placeholder=" EX : 2021-01-01 " required><br>
+
+            <label for="labelleidProcedure">Sélectionner une procédure :</label><br>
+            <select class="form-select" name="idProcedure" required>
+            <option value=""> Sélectionner une procédure...</option>
+            {% for type in procedure %}
+                     <option value="{{ type.idProcedure }}"> {{ type.libelleProcedure }} </option>
+            {% endfor %}
+            </select><br>
+
+            <label for="labelleidStatutAdmin">Sélectionner statut administrattion :</label><br>
+            <select class="form-select" name="idStatutAdmin" required>
+            <option value=""> Sélectionner statut administrattion...</option>
+            {% for type in statutAdmin %}
+                     <option value="{{ type.idStatutAdmin }}"> {{ type.libelleStatut }} </option>
+            {% endfor %}
+            </select><br>
+
+            <div style="text-align: center">
+                <a href="show" class="btn btn-danger">Annuler</a>
+                <input class="btn btn-primary" type="submit" value="Creer" name="Valider">
+            </div>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}

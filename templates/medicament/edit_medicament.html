@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Editer un médicament</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Editer un médicament</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/medicament/edit" >
+      <fieldset>
+        <div class="form-group container-md">
+            <input type="hidden" name="idMed" value="{{ medicament.idMed }}" id="idMed">
+            <label for="labellecodeCIS">Code CIS :</label><br>
+            <input class="form-control" id="codeCIS" type="number" name="codeCIS" value="{{medicament.codeCIS}}" required> <br>
+            <label for="labelledenomination">Dénomination :</label><br>
+            <input class="form-control" id="denomination" type="text" name="denomination" value="{{medicament.denomination}}" required> <br>
+            <label for="labelleformePharmaceutique">Forme pharmaceutique :</label><br>
+            <input class="form-control" id="formePharamar" type="text" name="formePharama" value="{{medicament.formePharama}}" required> <br>
+            <label for="labelleetatCommercialisation">Etat Commercialisation :</label><br>
+            <input class="form-control" id="etatCommercialisation" type="text" name="etatCommercialisation" value="{{medicament.etatCommercialisation}}" required> <br>
+            <label for="labellestatutBDM">Statut BDM :</label><br>
+            <input class="form-control" id="statutBDM" type="text" name="statutBDM" value="{{medicament.statutBDM}}" required> <br>
+            <label for="labellenumUEAutorisation">NumUE Autorisation :</label><br>
+            <input class="form-control" id="numUEAutorisation" type="number" name="numUEAutorisation" value="{{medicament.numUEAutorisation}}" required> <br>
+            <label for="labelletitulaire">Titulaire :</label><br>
+            <input class="form-control" id="titulaire" type="text" name="titulaire" value="{{medicament.titulaire}}" required> <br>
+            <label for="labellesurveillanceRenforcee">Surveillance Renforcée :</label><br>
+            <input class="form-control" id="surveillance" type="text" name="surveillance" value="{{medicament.surveillance}}" required> <br>
+            <label for="labelleJJ_MM_AAAA">Date :</label><br>
+            <input class="form-control" id="JJ_MM_AAAA" type="date" name="JJ_MM_AAAA" value="{{medicament.JJ_MM_AAAA}}" required> <br>
+
+
+            <label for="labelleidProcedure">Procédure :</label><br>
+            <select class="form-control" id="idProcedure" name="idProcedure" required>
+                {% for type in procedure %}
+                     <option value="{{ type.idProcedure }}" {% if medicament.idProcedure == type.idProcedure %}selected{% endif %}>
+                {{ type.libelleProcedure }}
+            </option>
+                {% endfor %}
+            </select><br>
+
+            <label for="labelleidStatutAdmin">Statut administration :</label><br>
+            <select class="form-control" id="idStatutAdmin" name="idStatutAdmin" required>
+                {% for type in statutAdmin %}
+                    <option value="{{ type.idStatutAdmin }}" {% if medicament.idStatutAdmin == type.idStatutAdmin %}selected{% endif %}>
+                        {{ type.libelleStatut }}
+                    </option>
+                {% endfor %}
+            </select><br>
+
+
+            <input class="btn btn-primary" type="submit" value="Editer" name="Valider" >
+            <a href="show" class="btn btn-danger">Annuler</a>
+
+
+        </div>
+      </fieldset>
+  </form>
+{% endblock %}

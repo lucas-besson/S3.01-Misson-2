@@ -4,9 +4,11 @@ from flask import Blueprint
 from controllers import pathologie
 from controllers import patient
 from controllers import filtre
+from controllers import medicament
 from controllers.pathologie import *
 from controllers.patient import *
 from controllers.filtre import *
+from controllers.medicament import *
 
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
@@ -23,6 +25,7 @@ def show_accueil():
 app.register_blueprint(pathologie)
 app.register_blueprint(patient)
 app.register_blueprint(filtre)
+app.register_blueprint(medicament)
 
 if __name__ == '__main__':
     app.run()

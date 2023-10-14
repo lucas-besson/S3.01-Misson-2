@@ -16,8 +16,6 @@ def show_pathologie():
 @pathologie.route('/pathologie/delete', methods=['GET'])
 def delete_pathologie():
     idPathologie = request.args.get('idPathologie')
-    print("coucou")
-    print(idPathologie)
     pathologie_delete(idPathologie)
     return redirect(url_for('pathologie.show_pathologie'))
 

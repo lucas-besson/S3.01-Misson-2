@@ -9,14 +9,14 @@ DROP TABLE IF EXISTS StatutAdministration;
 
 CREATE TABLE StatutAdministration(
         idStatutAdmin INT,
-        libelléStatut VARCHAR(255) NOT NULL,
+        libelleStatut VARCHAR(255) NOT NULL,
         PRIMARY KEY(idStatutAdmin)
 );
 
 CREATE TABLE ProcedureAutorisation(
-        idProcédure INT,
-        libelléProcédure VARCHAR(255) NOT NULL,
-        PRIMARY KEY(idProcédure)
+        idProcedure INT,
+        libelleProcedure VARCHAR(255) NOT NULL,
+        PRIMARY KEY(idProcedure)
 );
 
 CREATE TABLE Prescription(
@@ -44,20 +44,20 @@ CREATE TABLE Pathologie(
 );
 
 CREATE TABLE Medicament(
-        idMed INT,
+        idMed INT AUTO_INCREMENT,
         codeCIS INT NOT NULL,
-        dénomination VARCHAR(255),
+        denomination VARCHAR(255),
         formePharama VARCHAR(255),
-        etatCommercialisation BOOLEAN,
+        etatCommercialisation VARCHAR(255),
         statutBDM VARCHAR(255),
         numUEAutorisation VARCHAR(255),
         titulaire VARCHAR(255),
-        surveillance BOOLEAN,
+        surveillance VARCHAR(255),
         JJ_MM_AAAA DATE NOT NULL,
-        idProcédure INT NOT NULL,
+        idProcedure INT NOT NULL,
         idStatutAdmin INT NOT NULL,
         PRIMARY KEY(idMed),
-        FOREIGN KEY(idProcédure) REFERENCES ProcedureAutorisation(idProcédure),
+        FOREIGN KEY(idProcedure) REFERENCES ProcedureAutorisation(idProcedure),
         FOREIGN KEY(idStatutAdmin) REFERENCES StatutAdministration(idStatutAdmin)
 );
 
@@ -119,3 +119,4 @@ ORDER BY nomPathologie;
 
 
 
+SELECT idProcedure,libelleProcedure FROM ProcedureAutorisation
