@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block body %}
-<h3>Type of patient</h3>
-<a class="btn btn-primary" href="/patient/add">Add Patient</a>
+<h3>Les patients</h3>
+<a class="btn btn-primary" href="/patient/add">Ajouter un patient</a>
 <br><br>
 
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>Identifiant du patient</th><th>Nom du patient</th><th>
+            <th>Identifiant du patient</th><th>Nom</th><th>Prénom</th><th>Date de Naissance</th><th>Adresse</th><th>Code postale</th><th>Ville</th><th>Téléphone</th><th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +20,15 @@
         {% for ligne in patient %}
            <tr>
                   <td>{{ ligne.idPatient }}</td>
-                  <td>{{ ligne.nomPatient }}</td>
+                  <td>{{ ligne.nom }}</td>
+                  <td>{{ ligne.prenom }}</td>
+                  <td>{{ ligne.dateNaissance }}</td>
+                  <td>{{ ligne.adresse }}</td>
+                  <td>{{ ligne.codePostale }}</td>
+                  <td>{{ ligne.ville }}</td>
+                  <td>{{ ligne.telephone }}</td>
                   <td>
-                      <a class="btn btn-success" href="/patient/edit?idPatient={{ ligne.idPatient }}&amp;param2={{ligne.idPatient}}">Editer</a>&nbsp;
+                      <a class="btn btn-success" href="/patient/edit?idPatient={{ ligne.idPatient }}">Editer</a>&nbsp;
                       <a class="btn btn-danger" href="/patient/delete?idPatient={{ ligne.idPatient }}" >Supprimer</a>
                   </td>
            </tr>

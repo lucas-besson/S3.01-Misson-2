@@ -33,7 +33,7 @@ CREATE TABLE Patient(
         adresse VARCHAR(255),
         codePostale INT NOT NULL,
         ville VARCHAR(255),
-        telephone BIGINT NOT NULL,
+        telephone VARCHAR(255) NOT NULL,
         PRIMARY KEY(idPatient)
 );
 
@@ -80,11 +80,11 @@ CREATE TABLE est_malade_de(
         FOREIGN KEY(idPathologie) REFERENCES pathologie(idPathologie)
 );
 
-LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/statut_administration.csv' INTO TABLE StatutAdministration FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/procedure_autorisation.csv' INTO TABLE ProcedureAutorisation FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/prescription.csv' INTO TABLE Prescription FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\statut_administration.csv' INTO TABLE StatutAdministration FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\procedure_autorisation.csv' INTO TABLE ProcedureAutorisation FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\prescription.csv' INTO TABLE Prescription FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
 
 
 SELECT * FROM StatutAdministration;
@@ -116,7 +116,5 @@ WHERE P.idPathologie=2;
 SELECT idPathologie,nomPathologie
 FROM Pathologie
 ORDER BY nomPathologie;
-
-
 
 SELECT idProcedure,libelleProcedure FROM ProcedureAutorisation

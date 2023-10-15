@@ -13,8 +13,20 @@
     <fieldset>
         <div class="form-group container-md">
             <input type="hidden" name="idPatient" size="18" value="{{ patient.idPatient }}" id="idPatient">
-            <label for="libelle">Libellé Patient:</label><br>
-            <input class="form-control" type="text" name="nomPatient" value="{{ patient.nomPatient }}" id="nomPatient" required><br>
+            <label for="nom_patient">Nom :</label><br>
+            <input class="form-control" id="nomPatient" type="text" name="nomPatient" value="{{ patient.nom }}" placeholder=" EX : JEAN " required><br>
+            <label for="prenom_patient">Prénom :</label><br>
+            <input class="form-control" id="prenomPatient" type="text" name="PrenomPatient" value="{{ patient.prenom }}" placeholder=" EX : JEAN " required><br>
+            <label for="date_naissance">Date de naissance :</label>
+            <input type="date" id="dateDeNaissance" name="DateNaissancePatient" value="{{ patient.dateNaissance }}" min="1900-01-01" max="2023-10-11" /><br>
+            <label for="adresse_patient">Adresse :</label><br>
+            <input class="form-control" id="adressePatient" type="text" name="AdressePatient" value="{{ patient.adresse }}" placeholder=" EX : 143 Avenue de Versaille " required><br>
+            <label for="ville_patient">Ville :</label><br>
+            <input class="form-control" id="villePatient" type="text" name="VillePatient" value="{{ patient.ville }}" placeholder=" EX : PARIS " required><br>
+            <label for="codeP_patient">Code Postale :</label><br><br>
+            <input class="form-control" id="codePostalePatient" type="text" name="CodePostalePatient" value="{{ patient.codePostale }}" placeholder=" EX : 75016 " required><br>
+            <label for="tel_patient">Numéro de téléphone :</label><br><br>
+            <input type="tel" id="telPatient" name="TelPatient" value="{{ patient.telephone }}" placeholder="06.01.02.03.04.05" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" required><br><br>
             <input class="btn btn-primary" type="submit" value="Editer" name="Valider" >
             <a href="show" class="btn btn-danger">Annuler</a>
         </div>
