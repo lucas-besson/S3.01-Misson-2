@@ -29,6 +29,7 @@ def edit_pathologie():
 @pathologie.route('/pathologie/edit', methods=['POST'])
 def valide_edit_pathologie():
     idPathologie = request.form.get('idPathologie','')
+    print(idPathologie)
     nomPathologie = request.form.get('nomPathologie', '')
     pathologie_edit(idPathologie, nomPathologie)
     return redirect(url_for('pathologie.show_pathologie'))
