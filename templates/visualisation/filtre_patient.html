@@ -33,10 +33,10 @@
         <form action="/visualisation/filtre/suppr" style="display: inline-block; margin: 5px;" method="post">
             <button class="btn btn-primary">Supprimer filtre</button><br><br>
         </form>
-            <form action="#" style="display: inline-block; margin: 5px;" method="post">
+        {% endif %}
+     <form action="/visualisation/filtre/download" style="display: inline-block; margin: 5px;" method="post">
             <button class="btn btn-primary"> Exporter en CSV</button><br><br>
         </form>
-        {% endif %}
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>

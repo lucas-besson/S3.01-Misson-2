@@ -2,6 +2,10 @@ import re
 from flask import *
 from models.dao_pathologie import *
 from models.dao_filtre import *
+import io
+import csv
+from flask import Flask, Response
+from flask_csv import send_csv
 
 filtre = Blueprint('filtre', __name__, template_folder='templates')
 
@@ -12,6 +16,21 @@ def show_filtre():
     items_filtre = filtrer_patients(filter_word, types)
     types = pathologie_find()
     return render_template('/visualisation/filtre_patient.html', items_filtre=items_filtre, types=types)
+
+@filtre.route('/visualisation/filtre/download', methods=['POST'])
+def export_csv():
+    filter_word = session.get('filtrer_word', None)
+    types = session.get('types', None)
+    temp = filtrer_patients(filter_word, types)
+
+    csv_data = "nom;nomPathologie\n"
+    for i in temp:
+        csv_data += i['nom'] + ";" + i['nomPathologie'] + "\n"
+
+    with open("patient.csv", "w") as csv_file:
+        csv_file.write(csv_data)
+
+    return send_file("patient.csv", as_attachment=True, download_name="patient.csv")
 
 @filtre.route('/visualisation/filtre/send', methods=['POST'])
 def filtrer_send():
