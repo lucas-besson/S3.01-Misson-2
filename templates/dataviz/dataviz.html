@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+
+{% block javascripts %}
+    {{ super() }}
+{% endblock %}
+
+{% block javascripts_head %}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block title %}
+    <title>visualisation de données</title>
+{% endblock %}
+
+{% block body %}
+        <h4>Vous trouverez ci-dessous (a compléter...)) : </h4>
+        <canvas id="myChart" width="300" height="200"></canvas>
+        <script type="text/javascript">
+          const labels = {{ labels_categorie_pathologie|safe }};
+          const values = {{ values_categorie_pathologie|safe }};
+          const colors = ["#3e95cd", "#8e5ea2","#3cba9f","#FE9920","#D81E5B"];
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                data: values,
+                backgroundColor: colors,
+                label: 'Nombre de pathologies par catégorie'
+              }]
+            },
+            options: {
+              responsive: true
+            }
+          });
+        </script>
+{% endblock %}
