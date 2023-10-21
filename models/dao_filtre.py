@@ -8,7 +8,7 @@ def filtrer_patients(filter_word, types):
     cursor = connection.cursor()
     sql = '''SELECT nom, nomPathologie
              FROM Patient
-             INNER JOIN est_malade_de emd on Patient.idPatient = emd.idPatient
+             INNER JOIN estMaladeDe emd on Patient.idPatient = emd.idPatient
              INNER JOIN Pathologie P on emd.idPathologie = P.idPathologie'''
     list_param = []
     condition_and = ""

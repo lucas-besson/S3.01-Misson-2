@@ -5,30 +5,25 @@
 {% endblock %}
 
 {% block body %}
-<h3>Les médicament</h3>
-<a class="btn btn-primary" href="/medicament/add">Ajouter médicament</a>
+<h3>Les médicaments</h3>
+<a class="btn btn-primary" href="/medicament/add">Ajouter un médicament</a>
 <br><br>
 
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>Id Medicament</th><th>Code CIS</th><th>Dénomination</th><th>Forme pharmaceutique</th><th>Etat Commercialisation</th><th>StatutBDM</th><th>Num UE Autorisation</th><th>Titulaire</th><th>Surveillance</th><th>Date</th><th>Procédure</th><th>Statut administartion</th><th>Actions</th>
+            <th>Code CIS</th><th>Dénomination</th><th>Forme pharmaceutique</th><th>Titulaire</th><th>Surveillance</th><th>Procédure</th><th>Statut administartion</th><th>Actions</th>
         </tr>
     </thead>
     <tbody>
     {% if medicament | length >= 1 %}
         {% for ligne in medicament %}
            <tr>
-                  <td>{{ ligne.idMed }}</td>
                   <td>{{ ligne.codeCIS }}</td>
                   <td>{{ ligne.denomination }}</td>
                   <td>{{ ligne.formePharama }}</td>
-                  <td>{{ ligne.etatCommercialisation }}</td>
-                  <td>{{ ligne.statutBDM }}</td>
-                  <td>{{ ligne.numUEAutorisation }}</td>
                   <td>{{ ligne.titulaire }}</td>
                   <td>{{ ligne.surveillance }}</td>
-                  <td>{{ ligne.JJ_MM_AAAA }}</td>
                   <td>{{ ligne.Proced }}</td>
                   <td>{{ ligne.StatutAdmin }}</td>
                   <td>

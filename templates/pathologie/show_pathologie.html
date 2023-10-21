@@ -12,7 +12,7 @@
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
-            <th>Identifiant de la pathologie</th><th>Nom de la pathologie</th><th>Actions</th>
+            <th>Identifiant de la pathologie</th><th>Nom de la pathologie</th><th>Nom de la catégorie</th><th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +21,7 @@
            <tr>
                   <td>{{ ligne.idPathologie }}</td>
                   <td>{{ ligne.nomPathologie }}</td>
+                  <td>{{ ligne.nomCategoriePathologie }}</td>
                   <td>
                       <a class="btn btn-success" href="/pathologie/edit?idPathologie={{ ligne.idPathologie }}&amp;param2={{ligne.nomPathologie}}">Editer</a>&nbsp;
                       <a class="btn btn-danger" href="/pathologie/delete?idPathologie={{ ligne.idPathologie }}" >Supprimer</a>

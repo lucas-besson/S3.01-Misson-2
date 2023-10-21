@@ -6,9 +6,8 @@ def pathologie_find():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT idPathologie,nomPathologie FROM Pathologie'''
+        sql = ''' SELECT idPathologie,nomPathologie, C.nomCategoriePathologie FROM Pathologie As P INNER JOIN categoriePathologie As C ON P.idCategoriePathologie = C.idCategoriePathologie ORDER BY 1'''
         cursor.execute(sql)
-        # print(cursor.fetchall())
         return cursor.fetchall()
     except ValueError:
         abort(400, 'error requete find_pathologie')

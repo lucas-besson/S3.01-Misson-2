@@ -1,7 +1,9 @@
-DROP TABLE IF EXISTS est_malade_de;
+
+DROP TABLE IF EXISTS estMaladeDe;
 DROP TABLE IF EXISTS Correspondance;
 DROP TABLE IF EXISTS Medicament;
 DROP TABLE IF EXISTS Pathologie;
+DROP TABLE IF EXISTS categoriePathologie;
 DROP TABLE IF EXISTS Patient;
 DROP TABLE IF EXISTS Prescription;
 DROP TABLE IF EXISTS ProcedureAutorisation;
@@ -36,12 +38,20 @@ CREATE TABLE Patient(
         telephone VARCHAR(255) NOT NULL,
         PRIMARY KEY(idPatient)
 );
+CREATE TABLE categoriePathologie(
+   idCategoriePathologie INT,
+   nomCategoriePathologie VARCHAR(255) NOT NULL,
+   PRIMARY KEY(idCategoriePathologie)
+);
 
 CREATE TABLE Pathologie(
-        idPathologie INT AUTO_INCREMENT,
-        nomPathologie VARCHAR(255) NOT NULL,
-        PRIMARY KEY(idPathologie)
+   idPathologie INT,
+   nomPathologie VARCHAR(255) NOT NULL,
+   idCategoriePathologie INT NOT NULL,
+   PRIMARY KEY(idPathologie),
+   FOREIGN KEY(idCategoriePathologie) REFERENCES categoriePathologie(idCategoriePathologie)
 );
+
 
 CREATE TABLE Medicament(
         idMed INT AUTO_INCREMENT,
@@ -72,7 +82,7 @@ CREATE TABLE Correspondance(
         FOREIGN KEY(idPatient) REFERENCES Patient(idPatient)
 );
 
-CREATE TABLE est_malade_de(
+CREATE TABLE estMaladeDe(
         idPatient INT,
         idPathologie INT,
         PRIMARY KEY(idPatient, idPathologie),
@@ -83,38 +93,30 @@ CREATE TABLE est_malade_de(
 LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\statut_administration.csv' INTO TABLE StatutAdministration FIELDS TERMINATED BY ';';
 LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\procedure_autorisation.csv' INTO TABLE ProcedureAutorisation FIELDS TERMINATED BY ';';
 LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\prescription.csv' INTO TABLE Prescription FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
 LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\categorie_pathologie.csv' INTO TABLE categoriePathologie FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\patient.csv' INTO TABLE Patient FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\correspondance.csv' INTO TABLE Correspondance FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\est_malade.csv' INTO TABLE estMaladeDe FIELDS TERMINATED BY ';';
 
 
 SELECT * FROM StatutAdministration;
 SELECT * FROM Medicament;
 SELECT * FROM Prescription;
-
-
-INSERT INTO Patient (nom, prenom, dateNaissance, adresse, codePostale, ville, telephone)
-VALUES ('lucas', 'besson', '2003-09-26', 'TEST ADRESSE', 75000, 'PARIS', 0677777777);
-
-INSERT INTO Patient (nom, prenom, dateNaissance, adresse, codePostale, ville, telephone)
-VALUES ('leo', 'corutois', '2003-09-16', 'TEST ADRESSE', 75000, 'PARIS', 0677777777);
-
 SELECT * FROM Patient;
-
-INSERT INTO est_malade_de(idPatient,idPathologie) VALUES (1,1);
-INSERT INTO est_malade_de(idPatient,idPathologie) VALUES (2,2);
-
-SELECT * FROM est_malade_de;
+SELECT * FROM estMaladeDe;
+SELECT * FROM Pathologie;
 
 SELECT nom,nomPathologie
 FROM Patient
-INNER JOIN est_malade_de emd on Patient.idPatient = emd.idPatient
+INNER JOIN estMaladeDe emd on Patient.idPatient = emd.idPatient
 INNER JOIN Pathologie P on emd.idPathologie = P.idPathologie
 WHERE P.idPathologie=2;
-
-
 
 SELECT idPathologie,nomPathologie
 FROM Pathologie
 ORDER BY nomPathologie;
 
 SELECT idProcedure,libelleProcedure FROM ProcedureAutorisation
+

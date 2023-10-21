@@ -5,7 +5,7 @@ def medicament_find():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT idMed,codeCIS,denomination,formePharama,etatCommercialisation,statutBDM,numUEAutorisation,titulaire,surveillance,JJ_MM_AAAA,libelleProcedure AS Proced, libelleStatut AS StatutAdmin
+        sql = ''' SELECT codeCIS,denomination,formePharama,titulaire,surveillance,libelleProcedure AS Proced, libelleStatut AS StatutAdmin
                   FROM Medicament
                   INNER JOIN ProcedureAutorisation PA on Medicament.idProcedure = PA.idProcedure
                   INNER JOIN StatutAdministration SA on Medicament.idStatutAdmin = SA.idStatutAdmin
@@ -47,8 +47,6 @@ def medicament_edit(idMed, codeCIS, denomination, formePharama, etatCommercialis
     try:
         cursor = connection.cursor()
         sql = ''' UPDATE Medicament SET codeCIS = %s, denomination = %s, formePharama = %s, etatCommercialisation = %s, statutBDM = %s, numUEAutorisation = %s, titulaire = %s, surveillance = %s, JJ_MM_AAAA = %s, idProcedure = %s, idStatutAdmin = %s WHERE idMed = %s'''
-        print("hooooo je suis par la ")
-        print(idProcédure)
         cursor.execute(sql, (codeCIS, denomination, formePharama, etatCommercialisation, statutBDM, numUEAutorisation, titulaire, surveillance, JJ_MM_AAAA, idProcédure, idStatutAdmin, idMed))
         connection.commit()
         return True
