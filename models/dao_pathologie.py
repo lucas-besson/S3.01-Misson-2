@@ -17,8 +17,9 @@ def pathologie_delete(idPathologie):
     connection = get_db()
     try:
         cursor = connection.cursor()
+        sql = ''' DELETE FROM estMaladeDe WHERE idPathologie = %s'''
+        cursor.execute(sql, idPathologie)
         sql = ''' DELETE FROM Pathologie WHERE idPathologie = %s'''
-        print(sql)
         cursor.execute(sql, idPathologie)
         connection.commit()
         return True
