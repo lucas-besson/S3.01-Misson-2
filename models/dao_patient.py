@@ -66,7 +66,6 @@ def patient_add_pathologie(idPatient, idPathologie):
         sql = ''' INSERT INTO estMaladeDe (idPatient, idPathologie) VALUES (%s, %s)'''
         cursor.execute(sql, (idPatient, idPathologie))
         connection.commit()
-        print("la patho est bien ik")
         return True
     except ValueError:
         abort(400, 'error requete patient_add_pathologie')
