@@ -1,6 +1,9 @@
 import re
 from flask import *
+
+from models.dao_medicament import medicament_find,medicament_find_prescription
 from models.dao_patient import *
+from models.dao_pathologie import *
 
 from connexion_db import get_db
 
@@ -21,8 +24,9 @@ def delete_patient():
 def edit_patient():
     idPatient = request.args.get('idPatient')
     patient = patient_find_one(idPatient)
-    print(patient)
-    return render_template('/patient/edit_patient.html', patient=patient)
+    find_patho=patient_find_pathologie(idPatient)
+    find_medoc=patient_find_medicament(idPatient)
+    return render_template('/patient/edit_patient.html', patient=patient, find_patho=find_patho,find_medoc=find_medoc)
 
 @patient.route('/patient/edit', methods=['POST'])
 def valide_edit_patient():
@@ -61,3 +65,53 @@ def valide_add_patient():
     else:
         patient_add(nomPatient, prenomPatient, dateNaissancePatient, adressePatient, villePatient, codePostalePatient, telephonePatient)
         return redirect(url_for('patient.show_patient'))
+
+@patient.route('/patient/edit/add_pathologie', methods=['GET'])
+def add_patient_pathologie():
+    idPatient = request.args.get('idPatient','')
+    pathologies = pathologie_find()
+    return render_template('/patient/add_patient_pathologie.html', idPatient=idPatient, pathologies=pathologies)
+
+
+@patient.route('/patient/edit/add_pathologie', methods=['POST'])
+def valide_add_patient_pathologie():
+    idPatient = request.form.get('idPatient','')
+    idPathologie = request.form.get('idPathologie','')
+    patient_add_pathologie(idPatient, idPathologie)
+    return redirect(url_for('patient.edit_patient', idPatient=idPatient))
+
+@patient.route('/patient/edit/delete_pathologie', methods=['GET'])
+def delete_patient_pathologie():
+    idPatient = request.args.get('idPatient','')
+    idPathologie = request.args.get('idPathologie','')
+    patient_delete_pathologie(idPatient, idPathologie)
+    return redirect(url_for('patient.edit_patient', idPatient=idPatient))
+
+
+@patient.route('/patient/edit/add_medicament', methods=['GET'])
+def add_patient_medicament():
+    idPatient = request.args.get('idPatient','')
+    medicament = medicament_find()
+    prescription = medicament_find_prescription()
+    return render_template('/patient/add_patient_medicament.html', idPatient=idPatient, medicament=medicament, prescription=prescription)
+
+@patient.route('/patient/edit/add_medicament', methods=['POST'])
+def valide_add_patient_medicament():
+    idPatient = request.form.get('idPatient','')
+    idMedicament = request.form.get('idMed','')
+    idPrescription = request.form.get('idPrescription', '')
+    patient_add_medicament(idPatient, idMedicament, idPrescription)
+    return redirect(url_for('patient.edit_patient', idPatient=idPatient))
+
+@patient.route('/patient/edit/delete_medicament', methods=['GET'])
+def delete_patient_medicament():
+    idPatient = request.args.get('idPatient','')
+    idMedicament = request.args.get('idMed','')
+    idPrescription = request.args.get('idPrescription', '')
+    print("je suis juste ici juste la!!!")
+    print(idPrescription)
+    patient_delete_medicament(idPatient, idMedicament, idPrescription)
+    return redirect(url_for('patient.edit_patient', idPatient=idPatient))
+
+
+

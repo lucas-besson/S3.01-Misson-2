@@ -5,7 +5,7 @@ def medicament_find():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT codeCIS,denomination,formePharama,titulaire,surveillance,libelleProcedure AS Proced, libelleStatut AS StatutAdmin
+        sql = ''' SELECT idMed,codeCIS,denomination,formePharama,titulaire,surveillance,libelleProcedure AS Proced, libelleStatut AS StatutAdmin
                   FROM Medicament
                   INNER JOIN ProcedureAutorisation PA on Medicament.idProcedure = PA.idProcedure
                   INNER JOIN StatutAdministration SA on Medicament.idStatutAdmin = SA.idStatutAdmin
@@ -80,6 +80,16 @@ def medicament_find_statutAdmin():
     try:
         cursor = connection.cursor()
         sql = ''' SELECT idStatutAdmin,libelleStatut FROM StatutAdministration'''
+        cursor.execute(sql)
+        return cursor.fetchall()
+    except ValueError:
+        abort(400, 'error requete find_medicament')
+
+def medicament_find_prescription():
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' SELECT idPrescription,libellePrescription FROM Prescription'''
         cursor.execute(sql)
         return cursor.fetchall()
     except ValueError:
