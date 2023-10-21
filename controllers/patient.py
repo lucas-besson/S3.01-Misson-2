@@ -91,9 +91,15 @@ def delete_patient_pathologie():
 @patient.route('/patient/edit/add_medicament', methods=['GET'])
 def add_patient_medicament():
     idPatient = request.args.get('idPatient','')
-    medicament = medicament_find()
-    prescription = medicament_find_prescription()
-    return render_template('/patient/add_patient_medicament.html', idPatient=idPatient, medicament=medicament, prescription=prescription)
+    nb_medicament = count_medicament(idPatient)['TOTAL']
+    if nb_medicament < 10:
+        medicament = medicament_find()
+        prescription = medicament_find_prescription()
+        return render_template('/patient/add_patient_medicament.html', idPatient=idPatient, medicament=medicament, prescription=prescription)
+    else:
+        error_message = "Vous avez atteint le nombre maximal de médicaments (10) pour ce patient. Vous pouvez plus en rajouter. Supprmiez en un pour en rajouter un autre"
+        flash(error_message, 'alert-danger')
+        return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
 @patient.route('/patient/edit/add_medicament', methods=['POST'])
 def valide_add_patient_medicament():

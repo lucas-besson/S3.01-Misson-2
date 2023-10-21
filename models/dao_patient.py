@@ -129,3 +129,16 @@ def patient_delete_medicament(idPatient, idMedicament, idPrescription):
         return True
     except ValueError:
         abort(400, 'error requete patient_delete_medicament')
+
+def count_medicament(idPatient):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' SELECT COUNT(idMed) AS TOTAL
+                  FROM Correspondance
+                  WHERE idPatient=%s'''
+        cursor.execute(sql, idPatient)
+        return cursor.fetchone()
+    except ValueError:
+        abort(400, 'error requete count_medicament')
+
