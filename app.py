@@ -9,6 +9,7 @@ from controllers.pathologie import *
 from controllers.patient import *
 from controllers.filtre import *
 from controllers.medicament import *
+from controllers.dataviz import *
 
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
@@ -26,6 +27,7 @@ app.register_blueprint(pathologie)
 app.register_blueprint(patient)
 app.register_blueprint(filtre)
 app.register_blueprint(medicament)
+app.register_blueprint(dataviz)
 
 if __name__ == '__main__':
     app.run()

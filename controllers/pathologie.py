@@ -9,7 +9,6 @@ pathologie = Blueprint('pathologie', __name__, template_folder='templates')
 @pathologie.route('/pathologie/show')
 def show_pathologie():
     pathologies = pathologie_find()
-    print(pathologies)
     return render_template('/pathologie/show_pathologie.html', pathologie=pathologies)
 
 
