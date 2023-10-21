@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS estMaladeDe;
 DROP TABLE IF EXISTS Correspondance;
 DROP TABLE IF EXISTS Medicament;
@@ -23,7 +22,7 @@ CREATE TABLE ProcedureAutorisation(
 
 CREATE TABLE Prescription(
         idPrescription INT,
-        libelléPrescription VARCHAR(255) NOT NULL,
+        libellePrescription VARCHAR(255) NOT NULL,
         PRIMARY KEY(idPrescription)
 );
 
@@ -90,15 +89,15 @@ CREATE TABLE estMaladeDe(
         FOREIGN KEY(idPathologie) REFERENCES pathologie(idPathologie)
 );
 
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\statut_administration.csv' INTO TABLE StatutAdministration FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\procedure_autorisation.csv' INTO TABLE ProcedureAutorisation FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\prescription.csv' INTO TABLE Prescription FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\categorie_pathologie.csv' INTO TABLE categoriePathologie FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\patient.csv' INTO TABLE Patient FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\correspondance.csv' INTO TABLE Correspondance FIELDS TERMINATED BY ';';
-LOAD DATA LOCAL INFILE 'D:\\Eloïse\\Documents\\Etude\\BUT\\S3\\SAE\\S3.01-Misson-2\\DataDB\\est_malade.csv' INTO TABLE estMaladeDe FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/statut_administration.csv' INTO TABLE StatutAdministration FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/procedure_autorisation.csv' INTO TABLE ProcedureAutorisation FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/prescription.csv' INTO TABLE Prescription FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/medicament.csv' INTO TABLE Medicament FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/categorie_pathologie.csv' INTO TABLE categoriePathologie FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/pathologie.csv' INTO TABLE Pathologie FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/patient.csv' INTO TABLE Patient FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/correspondance.csv' INTO TABLE Correspondance FIELDS TERMINATED BY ';';
+LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/est_malade.csv' INTO TABLE estMaladeDe FIELDS TERMINATED BY ';';
 
 
 SELECT * FROM StatutAdministration;
@@ -120,3 +119,11 @@ ORDER BY nomPathologie;
 
 SELECT idProcedure,libelleProcedure FROM ProcedureAutorisation
 
+
+SELECT * FROM Prescription
+
+
+SELECT Correspondance.idMed,denomination,Correspondance.idPatient,Correspondance.idPrescription
+FROM Correspondance
+         INNER JOIN Medicament M on Correspondance.idMed = M.idMed
+WHERE Correspondance.idPatient =2

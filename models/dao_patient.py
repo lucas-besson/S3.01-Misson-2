@@ -56,3 +56,74 @@ def patient_add(nomPatient, prenomPatient, dateNaissancePatient, adressePatient,
         return True
     except ValueError:
         abort(400, 'error requete patient_add')
+
+def patient_add_pathologie(idPatient, idPathologie):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' INSERT INTO estMaladeDe (idPatient, idPathologie) VALUES (%s, %s)'''
+        cursor.execute(sql, (idPatient, idPathologie))
+        connection.commit()
+        print("la patho est bien ik")
+        return True
+    except ValueError:
+        abort(400, 'error requete patient_add_pathologie')
+
+def patient_find_pathologie(idPatient):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' SELECT estMaladeDe.idPathologie,nomPathologie,estMaladeDe.idPatient
+                  FROM estMaladeDe
+                  INNER JOIN Pathologie P on estMaladeDe.idPathologie = P.idPathologie 
+                  WHERE estMaladeDe.idPatient = %s'''
+        cursor.execute(sql, idPatient)
+        return cursor.fetchall()
+    except ValueError:
+        abort(400, 'error requete patient_find_pathologie')
+
+def patient_delete_pathologie(idPatient, idPathologie):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' DELETE FROM estMaladeDe WHERE idPatient = %s AND idPathologie = %s'''
+        cursor.execute(sql, (idPatient, idPathologie))
+        connection.commit()
+        return True
+    except ValueError:
+        abort(400, 'error requete patient_delete_pathologie')
+
+def patient_add_medicament(idPatient, idMedicament, idPrescription):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' INSERT INTO Correspondance (idPatient, idMed,idPrescription) VALUES (%s, %s, %s)'''
+        cursor.execute(sql, (idPatient, idMedicament, idPrescription))
+        connection.commit()
+        return True
+    except ValueError:
+        abort(400, 'error requete patient_add_medicament')
+
+def patient_find_medicament(idPatient):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' SELECT Correspondance.idMed,denomination,Correspondance.idPatient,Correspondance.idPrescription
+                  FROM Correspondance
+                  INNER JOIN Medicament M on Correspondance.idMed = M.idMed 
+                  WHERE Correspondance.idPatient = %s'''
+        cursor.execute(sql, idPatient)
+        return cursor.fetchall()
+    except ValueError:
+        abort(400, 'error requete patient_add_medicament')
+
+def patient_delete_medicament(idPatient, idMedicament, idPrescription):
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' DELETE FROM Correspondance WHERE idPatient = %s AND idMed = %s AND idPrescription = %s'''
+        cursor.execute(sql, (idPatient, idMedicament, idPrescription))
+        connection.commit()
+        return True
+    except ValueError:
+        abort(400, 'error requete patient_delete_medicament')

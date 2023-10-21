@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter d'une pathologie au patient </title>
+{% endblock %}
+
+{% block body %}
+  <h2>Ajouter la pathologie</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/patient/edit/add_pathologie">
+    <fieldset>
+        <div class="form-group container-md">
+            <input type="hidden" name="idPatient" value="{{ idPatient }}">
+            <label for="libelle_patho">Choisir la pathologie :</label><br>
+            <select class="form-select" name="idPathologie" required>
+            <option value=""> Sélectionner une pathologie...</option>
+            {% for type in pathologies %}
+                     <option value="{{ type.idPathologie }}"> {{ type.nomPathologie }} </option>
+            {% endfor %}
+            </select><br>
+
+            <div style="text-align: center">
+                <a href="../show" class="btn btn-danger">Annuler</a>
+                <input class="btn btn-primary" type="submit" value="Creer" name="Valider">
+            </div>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}

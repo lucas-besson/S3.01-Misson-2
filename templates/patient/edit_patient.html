@@ -12,6 +12,7 @@
   <form method="post" action="/patient/edit" >
     <fieldset>
         <div class="form-group container-md">
+            {{ patient.idPatient }}
             <input type="hidden" name="idPatient" size="18" value="{{ patient.idPatient }}" id="idPatient">
             <label for="nom_patient">Nom :</label><br>
             <input class="form-control" id="nomPatient" type="text" name="nomPatient" value="{{ patient.nom }}" placeholder=" EX : JEAN " required><br>
@@ -29,8 +30,66 @@
             <input type="tel" id="telPatient" name="TelPatient" value="{{ patient.telephone }}" placeholder="06.01.02.03.04.05" pattern="[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}" required><br><br>
             <input class="btn btn-primary" type="submit" value="Editer" name="Valider" >
             <a href="show" class="btn btn-danger">Annuler</a>
-            <button href="show" class="btn">Ajout d'une pathologie</button>
         </div>
     </fieldset>
   </form>
+    <br>
+    <a class="btn btn-success" href="/patient/edit/add_pathologie?idPatient={{patient.idPatient}}">Ajout d'une pathologie</a><br><br>
+    <table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Identifiant</th><th>Nom de la pathologie</th><th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if find_patho | length >= 1 %}
+        {% for ligne in find_patho %}
+           <tr>
+                  <td>{{ ligne.idPathologie }}</td>
+                  <td>{{ ligne.nomPathologie }}</td>
+                  <td>
+                      <a class="btn btn-danger" href="/patient/edit/delete_pathologie?idPatient={{ ligne.idPatient }}&idPathologie={{ ligne.idPathologie }}" >Supprimer</a>
+
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      Il y a aucune pathologie pour ce patient
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+    </table>
+
+
+    <br>
+    <a class="btn btn-success" href="/patient/edit/add_medicament?idPatient={{patient.idPatient}}">Ajout d'un médicament</a><br><br>
+    <table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>CODE CIS</th><th>Nom du médicament</th><th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if find_medoc | length >= 1 %}
+        {% for ligne in find_medoc %}
+           <tr>
+                  <td>{{ ligne.idMed }}</td>
+                  <td>{{ ligne.denomination }}</td>
+                  <td>
+                        <a class="btn btn-danger" href="/patient/edit/delete_medicament?idPatient={{ ligne.idPatient }}&idMed={{ ligne.idMed }}&idPrescription={{ ligne.idPrescription }}" >Supprimer</a>
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td>
+                      Il y a aucune pathologie pour ce patient
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+    </table>
 {% endblock %}
