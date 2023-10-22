@@ -6,7 +6,6 @@
 {% block body %}
     <div class="container-fluid">
         <form method="post" action="/visualisation/filtre/send" style="display: inline-block">
-
             <div class="form-group">
                 <h4>Rechercher par nom de pathologie</h4>
                 <input name="filter_word" type="text" placeholder="Recherche" size="10" class="form-control"
@@ -27,9 +26,23 @@
                 </select>
             </div>
             {% endif %}
+             {% if filter_types is defined %}
+                <div class="form-group">
+                    <h4>Types de Categorie Pathologie</h4>
+                    {% for item_filtre in filter_types %}
+                    <input type="checkbox" name="filter_types" value="{{ item_filtre.idCategoriePathologie }}"
+                           {% set id_item = item_filtre.idCategoriePathologie | string %}
+                           {% if session['filter_types'] %}
+                               {{ ' checked ' if (id_item in session['filter_types']) else '' }}
+                           {% endif %}
+                        >  {{ item_filtre.nomCategoriePathologie }}
+                        <br/>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <button type="submit" class="btn btn-primary" style="display: inline-block;">Filtrer</button><br><br>
         </form>
-        {% if session['filtrer_word'] or session['types']%}
+        {% if session['filter_word'] or session['types'] or session['filter_types']%}
         <form action="/visualisation/filtre/suppr" style="display: inline-block; margin: 5px;" method="post">
             <button class="btn btn-primary">Supprimer filtre</button><br><br>
         </form>
@@ -42,6 +55,7 @@
                 <tr>
                     <th>Nom Patient</th>
                     <th>Nom de la pathologie</th>
+                    <th>Nom Categorie Pathologie</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +64,7 @@
                     <tr>
                         <td>{{ ligne.nom }}</td>
                         <td>{{ ligne.nomPathologie }}</td>
+                        <td>{{ ligne.nomCategoriePathologie }}</td>
                     </tr>
                     {% endfor %}
                 {% else %}
