@@ -99,31 +99,6 @@ LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/Da
 LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/correspondance.csv' INTO TABLE Correspondance FIELDS TERMINATED BY ';';
 LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/est_malade.csv' INTO TABLE estMaladeDe FIELDS TERMINATED BY ';';
 
-
-SELECT * FROM StatutAdministration;
-SELECT * FROM Medicament;
-SELECT * FROM Prescription;
-SELECT * FROM Patient;
-SELECT * FROM estMaladeDe;
-SELECT * FROM Pathologie;
-
-SELECT nom,nomPathologie
-FROM Patient
-INNER JOIN estMaladeDe emd on Patient.idPatient = emd.idPatient
-INNER JOIN Pathologie P on emd.idPathologie = P.idPathologie
-WHERE P.idPathologie=2;
-
-SELECT idPathologie,nomPathologie
-FROM Pathologie
-ORDER BY nomPathologie;
-
-SELECT idProcedure,libelleProcedure FROM ProcedureAutorisation
-
-
-SELECT * FROM Prescription
-
-
-SELECT Correspondance.idMed,denomination,Correspondance.idPatient,Correspondance.idPrescription
+SELECT COUNT(idMed)
 FROM Correspondance
-         INNER JOIN Medicament M on Correspondance.idMed = M.idMed
-WHERE Correspondance.idPatient =2
+WHERE idPatient=1

@@ -53,3 +53,4 @@ def valide_add_pathologie():
         pathologie_add(nomPathologie)
         return redirect(url_for('pathologie.show_pathologie'))
 
+

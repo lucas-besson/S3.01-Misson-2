@@ -57,3 +57,14 @@ def pathologie_add(nomPathologie):
         return True
     except ValueError:
         abort(400, 'error requete pathologie_add')
+
+
+def patholoige_find_categories():
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = ''' SELECT idCategoriePathologie,nomCategoriePathologie FROM categoriePathologie ORDER BY idCategoriePathologie DESC '''
+        cursor.execute(sql)
+        return cursor.fetchall()
+    except ValueError:
+        abort(400, 'error requete pathologie_find_categories')
