@@ -13,3 +13,10 @@
 .navbar .navbar-collapse form {
     margin-left: auto;
 }
+
+/*mis een page de la data viz*/
+#myChart{
+    max-width: 1000px;
+    max-height: 500px;
+    margin:auto;
+}
