@@ -15,7 +15,33 @@
 
 {% block body %}
         <h4>Vous trouverez ci-dessous (a compléter...)) : </h4>
-        <canvas id="myChart" width="300" height="200"></canvas>
+        <canvas id="myChart" width="300" height="200"></canvas><br>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom Patient</th>
+                    <th>Prénom Patient</th>
+                    <th>Indice de Pathologie</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data_indice | length >= 1 %}
+                    {% for ligne in data_indice %}
+                        <tr>
+                            <td>{{ ligne.nom }}</td>
+                            <td>{{ ligne.prenom }}</td>
+                            <td>{{ ligne.CALCUL }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>
+                            Il y a un problème et ce message d'erreur est à modifier
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
         <script type="text/javascript">
           const labels = {{ labels_categorie_pathologie|safe }};
           const values = {{ values_categorie_pathologie|safe }};
@@ -36,4 +62,5 @@
             }
           });
         </script>
+
 {% endblock %}

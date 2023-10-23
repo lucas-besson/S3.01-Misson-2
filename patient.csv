@@ -1,3 +1,166 @@
-nom;nomPathologie
-Charlotte;INFECTIEUSES
-Aurelie;GRIPPE
+nom;nomPathologie;nomCategoriePathologie
+Alex;INFARCTUS DU MYOCARDE;Addictifs
+Laurence;INFARCTUS DU MYOCARDE;Addictifs
+Auguste;INFARCTUS DU MYOCARDE;Addictifs
+Andre;INFARCTUS DU MYOCARDE;Addictifs
+Oceane;INSUFFISANCE CARDIAQUE;Addictifs
+Guillaume;INSUFFISANCE CARDIAQUE;Addictifs
+Gabriel;INSUFFISANCE CARDIAQUE;Addictifs
+Frederic;INSUFFISANCE CARDIAQUE;Addictifs
+Michel;INSUFFISANCE CARDIAQUE;Addictifs
+Theophile;INSUFFISANCE CARDIAQUE;Addictifs
+Alix;ARYTHMIE CARDIAQUE;Addictifs
+Aime;ARYTHMIE CARDIAQUE;Addictifs
+Virginie;ARYTHMIE CARDIAQUE;Addictifs
+Rene;ARYTHMIE CARDIAQUE;Addictifs
+Charlotte;ARYTHMIE CARDIAQUE;Addictifs
+Amelie;ARYTHMIE CARDIAQUE;Addictifs
+Gabrielle;HYPERTENSION ARTERIELLE;Addictifs
+Margaret;HYPERTENSION ARTERIELLE;Addictifs
+Guy;HYPERTENSION ARTERIELLE;Addictifs
+Camille;VALVULOPATHIE CARDIAQUE;Addictifs
+Georges;VALVULOPATHIE CARDIAQUE;Addictifs
+Thomas;CARDIOMYOPATHIE;Addictifs
+Aime;CARDIOMYOPATHIE;Addictifs
+Arthur;CARDIOMYOPATHIE;Addictifs
+Lucie;CARDIOMYOPATHIE;Addictifs
+Augustin;ENDOCARDITE;Addictifs
+Stephane;ENDOCARDITE;Addictifs
+Mathilde;ENDOCARDITE;Addictifs
+Bernard;ENDOCARDITE;Addictifs
+Philippe;ENDOCARDITE;Addictifs
+Josephine;ENDOCARDITE;Addictifs
+Richard;EMBOLIE PULMONAIRE;Addictifs
+Sophie;EMBOLIE PULMONAIRE;Addictifs
+Suzanne;EMBOLIE PULMONAIRE;Addictifs
+Helene;EMBOLIE PULMONAIRE;Addictifs
+Antoine;EMBOLIE PULMONAIRE;Addictifs
+Diane;EMBOLIE PULMONAIRE;Addictifs
+Alex;EMBOLIE PULMONAIRE;Addictifs
+Gilles;EMBOLIE PULMONAIRE;Addictifs
+Marthe;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Odette;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Colette;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Philippe;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Margaret;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Monique;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Francoise;THROMBOSE VEINEUSE PROFONDE;Addictifs
+Anne;ARTERIOSCLEROSE;Addictifs
+Margaux;ARTERIOSCLEROSE;Addictifs
+Henriette;ARTERIOSCLEROSE;Addictifs
+Lorraine;ARTERIOSCLEROSE;Addictifs
+Monique;ARTERIOSCLEROSE;Addictifs
+Jacques;CARDIOPATHIE CONGENITALE;Addictifs
+Alice;CARDIOPATHIE CONGENITALE;Addictifs
+Alfred;PERITONITE;Addictifs
+Christelle;PERITONITE;Addictifs
+Isabelle;PERITONITE;Addictifs
+Denis;PERICARDITE;Addictifs
+Josephine;PERICARDITE;Addictifs
+Charlotte;ENDOCARDITE INFECTIEUSE;Addictifs
+Andre;ENDOCARDITE INFECTIEUSE;Addictifs
+Odette;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Frederic;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Michelle;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Amelie;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Aurelie;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Sabine;SYNDROME DE WOLFF-PARKINSON-WHITE;Addictifs
+Catherine;SYNDROME DE BRUGADA;Addictifs
+Thomas;SYNDROME DE BRUGADA;Addictifs
+Gregoire;SYNDROME DE BRUGADA;Addictifs
+Oceane;SYNDROME DE BRUGADA;Addictifs
+Patrick;STENOSE AORTIQUE;Addictifs
+Mathilde;STENOSE AORTIQUE;Addictifs
+Jeanne;STENOSE AORTIQUE;Addictifs
+Christine;STENOSE AORTIQUE;Addictifs
+Aime;STENOSE AORTIQUE;Addictifs
+Jacqueline;STENOSE AORTIQUE;Addictifs
+Eleonore;STENOSE AORTIQUE;Addictifs
+Patricia;STENOSE AORTIQUE;Addictifs
+Andre;STENOSE AORTIQUE;Addictifs
+Anais;STENOSE PULMONAIRE;Addictifs
+Olivier;STENOSE PULMONAIRE;Addictifs
+Theophile;STENOSE PULMONAIRE;Addictifs
+Thomas;STENOSE PULMONAIRE;Addictifs
+Catherine;STENOSE MITRALE;Addictifs
+Alice;STENOSE MITRALE;Addictifs
+Gabrielle;STENOSE MITRALE;Addictifs
+Jacqueline;STENOSE MITRALE;Addictifs
+Timothee;STENOSE TRICUSPIDE;Addictifs
+Adele;STENOSE TRICUSPIDE;Addictifs
+Astrid;STENOSE TRICUSPIDE;Addictifs
+Denis;STENOSE TRICUSPIDE;Addictifs
+Luc;ANGIOPLASTIE CORONAIRE;Addictifs
+Astrid;PACEMAKER CARDIAQUE;Addictifs
+Josette;PACEMAKER CARDIAQUE;Addictifs
+Augustin;PACEMAKER CARDIAQUE;Addictifs
+Emmanuel;PACEMAKER CARDIAQUE;Addictifs
+Brigitte;CHIRURGIE CARDIAQUE;Addictifs
+Renee;MALADIE DE TAKOTSUBO;Addictifs
+Eleonore;MALADIE DE TAKOTSUBO;Addictifs
+Philippe;MALADIE DE TAKOTSUBO;Addictifs
+Arthur;MALADIE DE TAKOTSUBO;Addictifs
+Olivier;MALADIE DE FABRY;Addictifs
+Sophie;MALADIE DE FABRY;Addictifs
+Maryse;MALADIE DE FABRY;Addictifs
+Diane;MALADIE DE FABRY;Addictifs
+Sabine;MALADIE DE FABRY;Addictifs
+Emile;MALADIE DE CHAGAS;Addictifs
+Michelle;MALADIE DE CHAGAS;Addictifs
+Arnaude;MALADIE DE CHAGAS;Addictifs
+Margaret;MALADIE DE CHAGAS;Addictifs
+Constance;MALADIE DE CHAGAS;Addictifs
+Thomas;HYPERTROPHIE CARDIAQUE;Addictifs
+Timothee;HYPERTROPHIE CARDIAQUE;Addictifs
+Aime;HYPERTROPHIE CARDIAQUE;Addictifs
+Elodie;HYPERTROPHIE CARDIAQUE;Addictifs
+Thibaut;HYPERTROPHIE CARDIAQUE;Addictifs
+Richard;HYPERTROPHIE CARDIAQUE;Addictifs
+Rene;INFARCTUS CEREBRAL;Addictifs
+Mathilde;INFARCTUS CEREBRAL;Addictifs
+Madeleine;ACCIDENT VASCULAIRE CEREBRAL;Addictifs
+Bernadette;ACCIDENT VASCULAIRE CEREBRAL;Addictifs
+Suzanne;EMBOLIE CEREBRALE;Addictifs
+Matthieu;EMBOLIE CEREBRALE;Addictifs
+Eleonore;EMBOLIE CEREBRALE;Addictifs
+Olivier;EMBOLIE CEREBRALE;Addictifs
+Marie;INSUFFISANCE CARDIAQUE CONGESTIVE;Addictifs
+Constance;INSUFFISANCE CARDIAQUE CONGESTIVE;Addictifs
+Catherine;INSUFFISANCE CARDIAQUE CONGESTIVE;Addictifs
+Helene;INSUFFISANCE CARDIAQUE CONGESTIVE;Addictifs
+Aime;CARDIOPATHIE ISCHEMIQUE;Addictifs
+Augustin;CARDIOPATHIE ISCHEMIQUE;Addictifs
+Diane;BRADYCARDIE;Addictifs
+Aurelie;BRADYCARDIE;Addictifs
+Maurice;BRADYCARDIE;Addictifs
+Olivie;TACHYCARDIE;Addictifs
+Diane;TACHYCARDIE;Addictifs
+Pauline;SYNDROME DE LONG QT;Addictifs
+Jean;SYNDROME DE LONG QT;Addictifs
+Philippe;SYNDROME DE LONG QT;Addictifs
+Diane;SYNDROME DE BRUGADA;Addictifs
+Josette;SYNDROME DE BRUGADA;Addictifs
+Bernard;SYNDROME DE BRUGADA;Addictifs
+Maurice;STENOSE AORTIQUE;Addictifs
+Renee;STENOSE AORTIQUE;Addictifs
+Amelie;STENOSE AORTIQUE;Addictifs
+Adele;STENOSE AORTIQUE;Addictifs
+Margaux;STENOSE PULMONAIRE;Addictifs
+Michel;STENOSE PULMONAIRE;Addictifs
+Adele;STENOSE MITRALE;Addictifs
+Cecile;STENOSE MITRALE;Addictifs
+Sabine;STENOSE MITRALE;Addictifs
+Susanne;STENOSE TRICUSPIDE;Addictifs
+Marthe;STENOSE TRICUSPIDE;Addictifs
+Timothee;STENOSE TRICUSPIDE;Addictifs
+Michele;STENOSE TRICUSPIDE;Addictifs
+Adelaide;STENOSE TRICUSPIDE;Addictifs
+Arnaude;STENOSE TRICUSPIDE;Addictifs
+Jacqueline;ANGIOPLASTIE CORONAIRE;Addictifs
+Mathilde;ANGIOPLASTIE CORONAIRE;Addictifs
+Bernard;PACEMAKER CARDIAQUE;Addictifs
+Paulette;PACEMAKER CARDIAQUE;Addictifs
+Guillaume;PACEMAKER CARDIAQUE;Addictifs
+Alex;CHIRURGIE CARDIAQUE;Addictifs
+Therese;CHIRURGIE CARDIAQUE;Addictifs
+Alice;CHIRURGIE CARDIAQUE;Addictifs

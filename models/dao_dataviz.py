@@ -7,7 +7,7 @@ def dataviz_find_categorie():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT cP.nomCategoriePathologie AS LABELLE,COUNT(idPathologie) AS TOTAL
+        sql = ''' SELECT cP.nomCategoriePathologie AS LABEL,COUNT(idPathologie) AS TOTAL
                   FROM Pathologie
                   INNER JOIN categoriePathologie cP on cP.idCategoriePathologie = Pathologie.idCategoriePathologie
                   GROUP BY cP.idCategoriePathologie
@@ -21,11 +21,11 @@ def dataviz_find_indice():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT cP.nomCategoriePathologie AS LABELLE,COUNT(idPathologie) AS TOTAL
-                      FROM Pathologie
-                      INNER JOIN categoriePathologie cP on cP.idCategoriePathologie = Pathologie.idCategoriePathologie
-                      GROUP BY cP.idCategoriePathologie
-                      ORDER BY cP.idCategoriePathologie DESC ;'''
+        sql = '''SELECT P.nom, P.prenom, Count( DISTINCT M.idPathologie)/Count( DISTINCT C.idMed) AS CALCUL 
+                FROM estmaladede As M 
+                INNER JOIN correspondance C ON C.idPatient = M.idPatient 
+                INNER JOIN patient P ON M.idPatient = P.idPatient 
+                GROUP BY M.idPatient; '''
         cursor.execute(sql)
         return cursor.fetchall()
     except ValueError:

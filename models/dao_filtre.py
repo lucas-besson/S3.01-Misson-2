@@ -6,7 +6,7 @@ from connexion_db import get_db
 def filtrer_patients(filter_word, types, filter_types):
     connection = get_db()
     cursor = connection.cursor()
-    sql = '''SELECT nom, nomPathologie, nomCategoriePathologie
+    sql = '''SELECT nom, prenom, dateNaissance, adresse, codePostale, ville, telephone
              FROM Patient
              INNER JOIN estMaladeDe emd ON Patient.idPatient = emd.idPatient
              INNER JOIN Pathologie P ON emd.idPathologie = P.idPathologie
