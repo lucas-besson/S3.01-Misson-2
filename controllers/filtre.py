@@ -26,9 +26,9 @@ def export_csv():
     filter_types = session.get('filter_types', None)
     temp = filtrer_patients(filter_word, types, filter_types)
 
-    csv_data = "Identifiant du patient;Nom;Prénom;Date de Naissance;Adresse;Code Postale;Ville;Tel;CodeCIS;\n"
+    csv_data = "Identifiant du patient;Nom;Prénom;Date de Naissance;Adresse;Code Postale;Ville;Tel;CodeCIS\n"
     for i in temp:
-        csv_data += str(i['idPatient']) + ";" + str(i['nom']) + ";" + str(i['prenom']) + ";" + str(i['dateNaissance']) + ";" + str(i['adresse']) + ";" + str(i['codePostale']) + ";" + str(i['ville']) + ";" + str(i['telephone']) + ";" + str(i['CodeCIS']) + ";\n"
+        csv_data += str(i['idPatient']) + ";" + str(i['nom']) + ";" + str(i['prenom']) + ";" + str(i['dateNaissance']) + ";" + str(i['adresse']) + ";" + str(i['codePostale']) + ";" + str(i['ville']) + ";" + str(i['telephone'][0:14]) + ";" + str(i['CodeCIS']) + "\n"
     with open("patient.csv", "w") as csv_file:
         csv_file.write(csv_data)
 

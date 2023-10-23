@@ -48,8 +48,6 @@ def filtrer_patients(filter_word, types, filter_types):
         sql = sql + ")"
     sql = sql + " GROUP BY Patient.idPatient, nom, prenom, dateNaissance, adresse, codePostale, ville, telephone"
 
-    print(sql)
-
     tuple_sql = tuple(list_param)
     cursor.execute(sql, tuple_sql)
     return cursor.fetchall()
