@@ -6,11 +6,13 @@ from connexion_db import get_db
 def filtrer_patients(filter_word, types, filter_types):
     connection = get_db()
     cursor = connection.cursor()
-    sql = '''SELECT nom, nomPathologie, nomCategoriePathologie
+    sql = '''SELECT Patient.idPatient,nom,prenom,dateNaissance,adresse,codePostale,ville,telephone,GROUP_CONCAT(DISTINCT nomPathologie SEPARATOR ', ') AS nomPathologie, GROUP_CONCAT(DISTINCT nomCategoriePathologie SEPARATOR ', ') AS nomCategoriePathologie,GROUP_CONCAT(DISTINCT codeCIS SEPARATOR ', ') AS CodeCIS
              FROM Patient
              INNER JOIN estMaladeDe emd ON Patient.idPatient = emd.idPatient
              INNER JOIN Pathologie P ON emd.idPathologie = P.idPathologie
-             INNER JOIN categoriePathologie cP ON P.idCategoriePathologie = cP.idCategoriePathologie'''
+             INNER JOIN categoriePathologie cP ON P.idCategoriePathologie = cP.idCategoriePathologie
+             INNER JOIN Correspondance C ON Patient.idPatient = C.idPatient
+             INNER JOIN Medicament M ON C.idMed = M.idMed'''
     list_param = []
     condition_and = ""
 
@@ -44,6 +46,9 @@ def filtrer_patients(filter_word, types, filter_types):
                 sql = sql + " OR "
             list_param.append(item)
         sql = sql + ")"
+    sql = sql + " GROUP BY Patient.idPatient, nom, prenom, dateNaissance, adresse, codePostale, ville, telephone"
+
+    print(sql)
 
     tuple_sql = tuple(list_param)
     cursor.execute(sql, tuple_sql)

@@ -64,6 +64,8 @@ def valide_add_patient():
         return render_template('/patient/add_patient.html', erreurs=erreurs, data=data)
     else:
         patient_add(nomPatient, prenomPatient, dateNaissancePatient, adressePatient, villePatient, codePostalePatient, telephonePatient)
+        message = "Le patient " + nomPatient + " " + prenomPatient + " a bien été ajouté"
+        flash(message, 'alert-success')
         return redirect(url_for('patient.show_patient'))
 
 @patient.route('/patient/edit/add_pathologie', methods=['GET'])
