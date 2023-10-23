@@ -53,18 +53,30 @@
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th>Nom Patient</th>
-                    <th>Nom de la pathologie</th>
-                    <th>Nom Categorie Pathologie</th>
+                    <th>Admin</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date Naissance</th>
+                    <th>Adresse</th>
+                    <th>Code Postale</th>
+                    <th>Ville</th>
+                    <th>Tel</th>
+                    <th>CodeCIS</th>
                 </tr>
             </thead>
             <tbody>
                 {% if items_filtre | length >= 1 %}
                     {% for ligne in items_filtre %}
                     <tr>
+                        <td>{{ ligne.idPatient }}</td>
                         <td>{{ ligne.nom }}</td>
-                        <td>{{ ligne.nomPathologie }}</td>
-                        <td>{{ ligne.nomCategoriePathologie }}</td>
+                        <td>{{ ligne.prenom }}</td>
+                        <td>{{ ligne.dateNaissance }}</td>
+                        <td>{{ ligne.adresse }}</td>
+                        <td>{{ ligne.codePostale }}</td>
+                        <td>{{ ligne.ville }}</td>
+                        <td>{{ ligne.telephone }}</td>
+                        <td>{{ ligne.CodeCIS }}</td>
                     </tr>
                     {% endfor %}
                 {% else %}
