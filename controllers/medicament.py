@@ -40,7 +40,7 @@ def valide_edit_medicament():
     medicament_edit(idMed, codeCIS, denomination, formePharama, etatCommercialisation, statutBDM, numUEAutorisation, titulaire, surveillance, JJ_MM_AAAA, idProcédure, idStatutAdmin)
     return redirect(url_for('medicament.show_medicament'))
 
-@medicament.route('/medicament/add', methods=['GET'])
+@medicament.route('/medicament/add')
 def add_medicament():
     erreurs=[]
     data=[]
