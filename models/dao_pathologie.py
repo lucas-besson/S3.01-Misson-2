@@ -30,29 +30,29 @@ def pathologie_find_one(idPathologie):
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT idPathologie,nomPathologie FROM Pathologie WHERE idPathologie = %s'''
+        sql = ''' SELECT idPathologie,nomPathologie,idCategoriePathologie FROM Pathologie WHERE idPathologie = %s'''
         cursor.execute(sql, idPathologie)
         return cursor.fetchone()
     except ValueError:
         abort(400, 'error requete pathologie_find_one')
 
-def pathologie_edit(idPathologie, nomPathologie):
+def pathologie_edit(idPathologie, nomPathologie, categoriePathologie):
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' UPDATE Pathologie SET nomPathologie = %s WHERE idPathologie = %s'''
-        cursor.execute(sql, (nomPathologie, idPathologie))
+        sql = ''' UPDATE Pathologie SET nomPathologie = %s,idCategoriePathologie=%s  WHERE idPathologie = %s'''
+        cursor.execute(sql, (nomPathologie,categoriePathologie, idPathologie))
         connection.commit()
         return True
     except ValueError:
         abort(400, 'error requete pathologie_edit')
 
-def pathologie_add(nomPathologie):
+def pathologie_add(nomPathologie,categoriePathologie):
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' INSERT INTO Pathologie (nomPathologie) VALUES (%s)'''
-        cursor.execute(sql, nomPathologie)
+        sql = ''' INSERT INTO Pathologie (nomPathologie,idCategoriePathologie) VALUES (%s,%s)'''
+        cursor.execute(sql, (nomPathologie,categoriePathologie))
         connection.commit()
         return True
     except ValueError:

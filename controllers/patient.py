@@ -41,7 +41,7 @@ def valide_edit_patient():
     patient_edit(idPatient, nomPatient, prenomPatient, dateNaissancePatient, adressePatient, villePatient, codePostalePatient, telephonePatient)
     return redirect(url_for('patient.show_patient'))
 
-@patient.route('/patient/add', methods=['GET'])
+@patient.route('/patient/add')
 def add_patient():
     erreurs=[]
     data=[]
