@@ -32,8 +32,6 @@ def valide_edit_pathologie():
     idPathologie = request.form.get('idPathologie','')
     nomPathologie = request.form.get('nomPathologie', '')
     categoriePathologie = request.form.get('categoriePathologie', '')
-    print("je suis exactement par ici !")
-    print(categoriePathologie)
     pathologie_edit(idPathologie, nomPathologie,categoriePathologie)
     return redirect(url_for('pathologie.show_pathologie'))
 
@@ -50,8 +48,6 @@ def valide_add_pathologie():
     data=[]
     nomPathologie = request.form.get('nomPathologie', '')
     categoriePathologie = request.form.get('categoriePathologie', '')
-    print("je suis ici")
-    print(categoriePathologie)
     if not nomPathologie:
         erreurs.append("Le nom de la pathologie est obligatoire")
     if erreurs:

@@ -4,6 +4,7 @@ from flask import *
 from models.dao_medicament import medicament_find,medicament_find_prescription
 from models.dao_patient import *
 from models.dao_pathologie import *
+import warnings
 
 from connexion_db import get_db
 
@@ -18,6 +19,9 @@ def show_patient():
 def delete_patient():
     idPatient = request.args.get('idPatient')
     patient_delete(idPatient)
+    message = "Le patient avec l'id " + idPatient + " a été supprimer"
+    warnings.warn(message)
+    flash(message, 'alert-danger')
     return redirect(url_for('patient.show_patient'))
 
 @patient.route('/patient/edit', methods=['GET'])
@@ -39,6 +43,9 @@ def valide_edit_patient():
     codePostalePatient = request.form.get('CodePostalePatient', '')
     telephonePatient = request.form.get('TelPatient', '')
     patient_edit(idPatient, nomPatient, prenomPatient, dateNaissancePatient, adressePatient, villePatient, codePostalePatient, telephonePatient)
+    message = "Le patient " + nomPatient + " " + prenomPatient + " a bien été modifier"
+    print(message)
+    flash(message, 'alert-warning')
     return redirect(url_for('patient.show_patient'))
 
 @patient.route('/patient/add')
@@ -65,6 +72,7 @@ def valide_add_patient():
     else:
         patient_add(nomPatient, prenomPatient, dateNaissancePatient, adressePatient, villePatient, codePostalePatient, telephonePatient)
         message = "Le patient " + nomPatient + " " + prenomPatient + " a bien été ajouté"
+        print(message)
         flash(message, 'alert-success')
         return redirect(url_for('patient.show_patient'))
 
@@ -80,6 +88,9 @@ def valide_add_patient_pathologie():
     idPatient = request.form.get('idPatient','')
     idPathologie = request.form.get('idPathologie','')
     patient_add_pathologie(idPatient, idPathologie)
+    message = "La Pathologie avec l'ID: " + idPathologie + " a bien été ajouté au patient"
+    print(message)
+    flash(message, 'alert-success')
     return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
 @patient.route('/patient/edit/delete_pathologie', methods=['GET'])
@@ -87,6 +98,9 @@ def delete_patient_pathologie():
     idPatient = request.args.get('idPatient','')
     idPathologie = request.args.get('idPathologie','')
     patient_delete_pathologie(idPatient, idPathologie)
+    message = "La Pathologie avec l'ID: " + idPathologie + " a bien été supprimer du patient"
+    warnings.warn(message)
+    flash(message, 'alert-danger')
     return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
 
@@ -100,6 +114,7 @@ def add_patient_medicament():
         return render_template('/patient/add_patient_medicament.html', idPatient=idPatient, medicament=medicament, prescription=prescription)
     else:
         error_message = "Vous avez atteint le nombre maximal de médicaments (10) pour ce patient. Vous pouvez plus en rajouter. Supprmiez en un pour en rajouter un autre"
+        warnings.warn(error_message)
         flash(error_message, 'alert-danger')
         return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
@@ -109,6 +124,9 @@ def valide_add_patient_medicament():
     idMedicament = request.form.get('idMed','')
     idPrescription = request.form.get('idPrescription', '')
     patient_add_medicament(idPatient, idMedicament, idPrescription)
+    message = "Le médicament avec l'ID: " + idMedicament + " a bien été ajouté au patient"
+    print(message)
+    flash(message, 'alert-success')
     return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
 @patient.route('/patient/edit/delete_medicament', methods=['GET'])
@@ -116,9 +134,10 @@ def delete_patient_medicament():
     idPatient = request.args.get('idPatient','')
     idMedicament = request.args.get('idMed','')
     idPrescription = request.args.get('idPrescription', '')
-    print("je suis juste ici juste la!!!")
-    print(idPrescription)
     patient_delete_medicament(idPatient, idMedicament, idPrescription)
+    message = "Le médicament avec l'ID: " + idMedicament + " a bien été supprimer du patient"
+    warnings.warn(message)
+    flash(message, 'alert-danger')
     return redirect(url_for('patient.edit_patient', idPatient=idPatient))
 
 

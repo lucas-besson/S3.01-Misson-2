@@ -63,8 +63,6 @@ def valide_add_medicament():
     JJ_MM_AAAA = request.form.get('JJ_MM_AAAA', '')
     idProcédure = request.form.get('idProcedure', '')
     idStatutAdmin = request.form.get('idStatutAdmin', '')
-    print("je suis par ici, juste la")
-    print(idProcédure)
     if not codeCIS:
         erreurs.append("Le code CIS est obligatoire")
     if not denomination:
@@ -86,7 +84,6 @@ def valide_add_medicament():
     if erreurs:
         return render_template('/medicament/add_medicament.html', erreurs=erreurs, data=data)
     else:
-        print("ici")
         medicament_add(codeCIS, denomination, formePharama, etatCommercialisation, statutBDM, numUEAutorisation, titulaire, surveillance, JJ_MM_AAAA, idProcédure, idStatutAdmin)
         return redirect(url_for('medicament.show_medicament'))
 
