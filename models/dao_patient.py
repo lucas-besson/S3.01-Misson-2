@@ -5,7 +5,7 @@ def patient_find():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = ''' SELECT * FROM patient'''
+        sql = ''' SELECT * FROM Patient'''
         cursor.execute(sql)
         return cursor.fetchall()
     except ValueError:

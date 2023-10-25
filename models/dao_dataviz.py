@@ -22,9 +22,9 @@ def dataviz_find_indice():
     try:
         cursor = connection.cursor()
         sql = '''SELECT P.nom, P.prenom, CEILING(Count( DISTINCT C.idMed)/Count( DISTINCT  M.idPathologie)) AS CALCUL 
-                FROM estmaladede As M 
-                INNER JOIN correspondance C ON C.idPatient = M.idPatient 
-                INNER JOIN patient P ON M.idPatient = P.idPatient 
+                FROM estMaladeDe As M 
+                INNER JOIN Correspondance C ON C.idPatient = M.idPatient 
+                INNER JOIN Patient P ON M.idPatient = P.idPatient 
                 GROUP BY M.idPatient; '''
         cursor.execute(sql)
         return cursor.fetchall()
@@ -37,9 +37,9 @@ def dataviz_pie_indice():
         cursor = connection.cursor()
         sql = '''SELECT CALCUL AS INDICE, Count(CALCUL) AS STAT FROM (
                     SELECT CEILING(Count( DISTINCT C.idMed)/Count( DISTINCT  M.idPathologie)) AS CALCUL
-                    FROM estmaladede As M
-                    INNER JOIN correspondance C ON C.idPatient = M.idPatient
-                    INNER JOIN patient P ON M.idPatient = P.idPatient
+                    FROM estMaladeDe As M
+                    INNER JOIN Correspondance C ON C.idPatient = M.idPatient
+                    INNER JOIN Patient P ON M.idPatient = P.idPatient
                     GROUP BY M.idPatient) As getIndice
                 GROUP BY CALCUL;'''
         cursor.execute(sql)

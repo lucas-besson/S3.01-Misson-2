@@ -99,7 +99,3 @@ LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/Da
 LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/correspondance.csv' INTO TABLE Correspondance FIELDS TERMINATED BY ';';
 LOAD DATA LOCAL INFILE '/Users/lucasbesson/Desktop/IUT_RDS/SAE/S3.01-Misson-2/DataDB/est_malade.csv' INTO TABLE estMaladeDe FIELDS TERMINATED BY ';';
 
-
-SELECT *  FROM categoriePathologie
-
-SELECT idPathologie,nomPathologie,idCategoriePathologie FROM Pathologie WHERE idPathologie = 1

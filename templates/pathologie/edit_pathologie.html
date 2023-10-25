@@ -15,7 +15,7 @@
             <input type="hidden" name="idPathologie" size="18" value="{{ pathologie.idPathologie }}" id="idPathologie">
             <label for="libelle">Libellé Pathologie:</label><br>
             <input class="form-control" type="text" name="nomPathologie" value="{{ pathologie.nomPathologie }}" id="nomPathologie" required><br>
-            <label for="labellecategoriePathologie">Procédure :</label><br>
+            <label for="labellecategoriePathologie">Catégorie de la pathologie :</label><br>
             <select class="form-control" id="categoriePathologie" name="categoriePathologie" required>
                 {% for type in categoriePathologie %}
                      <option value="{{ type.idCategoriePathologie }}" {% if pathologie.idCategoriePathologie == type.idCategoriePathologie %}selected{% endif %}>
