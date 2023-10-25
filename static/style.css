@@ -15,8 +15,16 @@
 }
 
 /*mis een page de la data viz*/
-#myChart{
+#myChart, #aPie{
     max-width: 1000px;
-    max-height: 500px;
+    max-height: 750px;
     margin:auto;
+}
+#danger{
+    background-color: rgba(234, 67, 67, 0.82);
+    color: #700202;
+    font-weight: bold;
+}
+small{
+    color:rgba(234, 67, 67, 0.82);
 }

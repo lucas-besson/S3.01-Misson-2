@@ -21,7 +21,7 @@ def dataviz_find_indice():
     connection = get_db()
     try:
         cursor = connection.cursor()
-        sql = '''SELECT P.nom, P.prenom, Count( DISTINCT M.idPathologie)/Count( DISTINCT C.idMed) AS CALCUL 
+        sql = '''SELECT P.nom, P.prenom, CEILING(Count( DISTINCT C.idMed)/Count( DISTINCT  M.idPathologie)) AS CALCUL 
                 FROM estmaladede As M 
                 INNER JOIN correspondance C ON C.idPatient = M.idPatient 
                 INNER JOIN patient P ON M.idPatient = P.idPatient 
@@ -30,3 +30,19 @@ def dataviz_find_indice():
         return cursor.fetchall()
     except ValueError:
         abort(400, 'error requete dataviz_find_indice')
+
+def dataviz_pie_indice():
+    connection = get_db()
+    try:
+        cursor = connection.cursor()
+        sql = '''SELECT CALCUL AS INDICE, Count(CALCUL) AS STAT FROM (
+                    SELECT CEILING(Count( DISTINCT C.idMed)/Count( DISTINCT  M.idPathologie)) AS CALCUL
+                    FROM estmaladede As M
+                    INNER JOIN correspondance C ON C.idPatient = M.idPatient
+                    INNER JOIN patient P ON M.idPatient = P.idPatient
+                    GROUP BY M.idPatient) As getIndice
+                GROUP BY CALCUL;'''
+        cursor.execute(sql)
+        return cursor.fetchall()
+    except ValueError:
+        abort(400, 'error requete dataviz_pie_indice')

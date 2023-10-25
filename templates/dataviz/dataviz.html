@@ -14,8 +14,13 @@
 {% endblock %}
 
 {% block body %}
-        <h4>Vous trouverez ci-dessous (a compléter...)) : </h4>
+        <h4>Diagramme en barre représentant le nombre de pathologie par catégorie des pathologie</h4>
         <canvas id="myChart" width="300" height="200"></canvas><br>
+        <h4>Diagramme ciculaire représentant la proportion d'indice pathologie</h4>
+       <canvas id="aPie" width="300" height="200"></canvas><br>
+        <h4>Indice pathologie par patient</h4>
+        <small>*Les patients en rouge sont dit en danger, il est conseillé qu'ils consultent un médecin dans les plus  brefs délais.</small>
+
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -28,9 +33,15 @@
                 {% if data_indice | length >= 1 %}
                     {% for ligne in data_indice %}
                         <tr>
-                            <td>{{ ligne.nom }}</td>
-                            <td>{{ ligne.prenom }}</td>
-                            <td>{{ ligne.CALCUL }}</td>
+                            {% if ligne.CALCUL >= 3 %}
+                                <td id='danger'>{{ ligne.nom }}</td>
+                                <td id='danger'>{{ ligne.prenom }}</td>
+                                <td id='danger'>{{ ligne.CALCUL }}</td>
+                            {% else %}
+                                <td>{{ ligne.nom }}</td>
+                                <td>{{ ligne.prenom }}</td>
+                                <td>{{ ligne.CALCUL }}</td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 {% else %}
@@ -55,6 +66,26 @@
                 data: values,
                 backgroundColor: colors,
                 label: 'Nombre de pathologies par catégorie'
+              }]
+            },
+            options: {
+              responsive: true
+            }
+          });
+        </script>
+        <script type="text/javascript">
+          const labels2 = {{ labels_indice|safe }};
+          const values2 = {{ values_indice|safe }};
+          const colors2 = ["#3e95cd", "#8e5ea2","#3cba9f","#FE9920","#D81E5B"];
+          var myPie = document.getElementById('aPie').getContext('2d');
+          var myChart = new Chart(myPie, {
+            type: 'pie',
+            data: {
+              labels: labels2,
+              datasets: [{
+                data: values2,
+                backgroundColor: colors2,
+                label: 'Indice pathologie'
               }]
             },
             options: {
